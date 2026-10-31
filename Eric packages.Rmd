@@ -1,0 +1,145 @@
+---
+title: "Eric Packages"
+author: "Eric ISHIMWE"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+---
+
+# Student details
+
+- **Name:** Eric ISHIMWE
+- **ID:** 20252MBI013
+
+# Purpose
+
+This file installs and loads packages for four common data sources:
+1. Built-in and external datasets
+2. PostgreSQL databases
+3. APIs
+4. Random or simulated datasets
+
+Run the setup chunk first. You only need to install a package once on your computer.
+
+# 1. Packages for datasets
+
+```{r dataset-packages}
+# Install packages for reading common data files
+dataset_packages <- c("readr", "readxl", "haven", "dplyr")
+
+# Install only packages that are not already installed
+missing_packages <- dataset_packages[!dataset_packages %in% rownames(installed.packages())]
+if (length(missing_packages) > 0) {
+  install.packages(missing_packages)
+}
+
+# Load the packages
+invisible(lapply(dataset_packages, library, character.only = TRUE))
+```
+
+```{r dataset-example}
+# Use a dataset that comes with R
+data("iris")
+
+# Check the first rows
+head(iris)
+```
+
+# 2. Packages for PostgreSQL
+
+```{r postgres-packages}
+# Install packages used to connect R to PostgreSQL
+postgres_packages <- c("DBI", "RPostgres")
+
+missing_packages <- postgres_packages[!postgres_packages %in% rownames(installed.packages())]
+if (length(missing_packages) > 0) {
+  install.packages(missing_packages)
+}
+
+invisible(lapply(postgres_packages, library, character.only = TRUE))
+```
+
+```{r postgres-example, eval=FALSE}
+# Replace these example values with your database details
+connection <- dbConnect(
+  RPostgres::Postgres(),
+  dbname = "school",
+  host = "localhost",
+  port = 5432,
+  user = "postgres",
+  password = "pass"
+)
+
+# See the tables in the database
+dbListTables(connection)
+
+# Close the connection when finished
+dbDisconnect(connection)
+```
+
+# 3. Packages for APIs
+
+```{r api-packages}
+# Install packages for sending web requests and reading JSON
+api_packages <- c("httr2", "jsonlite")
+
+missing_packages <- api_packages[!api_packages %in% rownames(installed.packages())]
+if (length(missing_packages) > 0) {
+  install.packages(missing_packages)
+}
+
+invisible(lapply(api_packages, library, character.only = TRUE))
+```
+
+```{r api-example, eval=FALSE}
+# Example public API endpoint; run when you have internet access
+response <- httr2::request("https://api.github.com") |>
+  httr2::req_perform()
+
+# Convert the response into text
+api_text <- httr2::resp_body_string(response)
+
+# Read the JSON response
+api_data <- jsonlite::fromJSON(api_text)
+api_data
+```
+
+# 4. Packages for random or simulated data
+
+```{r random-packages}
+# Install packages for generating random names and sample data
+random_packages <- c("randomNames", "wakefield")
+
+missing_packages <- random_packages[!random_packages %in% rownames(installed.packages())]
+if (length(missing_packages) > 0) {
+  install.packages(missing_packages)
+}
+
+invisible(lapply(random_packages, library, character.only = TRUE))
+```
+
+```{r random-example}
+# Create a small random dataset using base R
+set.seed(2026)
+
+random_students <- data.frame(
+  student_id = 1:10,
+  age = sample(18:30, 10, replace = TRUE),
+  score = sample(40:100, 10, replace = TRUE)
+)
+
+random_students
+```
+
+# Quick package summary
+
+| Source | Packages | Main use |
+|---|---|---|
+| Datasets and files | `readr`, `readxl`, `haven`, `dplyr` | Read and manage data |
+| PostgreSQL | `DBI`, `RPostgres` | Connect to PostgreSQL |
+| APIs | `httr2`, `jsonlite` | Request and read API data |
+| Random data | `randomNames`, `wakefield` | Generate sample data |
+
+**Reminder:** PostgreSQL and API examples are not run automatically. Add your own database details or API endpoint before running them.
