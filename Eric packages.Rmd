@@ -132,14 +132,3 @@ random_students <- data.frame(
 
 random_students
 ```
-
-# Quick package summary
-
-| Source | Packages | Main use |
-|---|---|---|
-| Datasets and files | `readr`, `readxl`, `haven`, `dplyr` | Read and manage data |
-| PostgreSQL | `DBI`, `RPostgres` | Connect to PostgreSQL |
-| APIs | `httr2`, `jsonlite` | Request and read API data |
-| Random data | `randomNames`, `wakefield` | Generate sample data |
-
-**Reminder:** PostgreSQL and API examples are not run automatically. Add your own database details or API endpoint before running them.
