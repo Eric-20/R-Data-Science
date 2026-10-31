@@ -703,27 +703,3 @@ selected_managers <- subset(
 
 selected_managers
 ```
-
-# 14. Practice tasks
-
-Use the examples in this document to complete the following exercises.
-
-1. Create a numeric vector containing five values and calculate its mean.
-2. Create a matrix with three rows and two columns, then multiply it by a compatible matrix.
-3. Create a data frame containing student names, gender, age and examination scores.
-4. Display the structure and summary of your data frame.
-5. Calculate the mean and standard deviation of examination scores.
-6. Create a boxplot comparing examination scores by gender.
-7. Create a scatter plot showing the relationship between age and examination scores.
-8. Calculate the correlation between age and examination scores.
-9. Fit a linear model to estimate examination scores using age.
-10. Create a new variable that calculates a score category.
-11. Create a dataset containing missing values and identify them.
-12. Sort your dataset by examination score.
-13. Select only two columns from your dataset.
-14. Create a second data frame and merge it with the first one.
-
----
-
-**Prepared by:** Eric ISHIMWE  
-**Student ID:** 20252MBI013
