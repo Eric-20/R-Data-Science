@@ -1,5 +1,5 @@
 ---
-title: "Eric Practice"
+title: "Practicing R for analysis, cleaning and reporting"
 author: "Eric ISHIMWE"
 date: "`r Sys.Date()`"
 output:
